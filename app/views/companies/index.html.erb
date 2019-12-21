@@ -1,0 +1,25 @@
+
+
+<table class = "table ">
+  <thead >
+    <tr>
+      <th>Назва</th>
+      <th>Мiсто</th>
+      <th>Адреса</th>
+      <th>Рiк</th>
+      <th>Номер телефону</th>
+      <th><%= link_to "Додати запис", new_company_path, :class =>'btn btn-success btn-sm'%></th>
+    </tr>
+  </thead>
+<% Company.all.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.city.name %></td>
+    <td><%= company.address %></td>
+    <td><%= company.year %></td>
+    <td><%= company.phone %> </td>
+    <td width = "150px"><%= link_to "Видалити", company_path(company.id), method: :delete, data:{confirm: "Видалити запис?"}, :class =>'btn btn-danger btn-sm'%></td>
+  </tr>
+<% end %>
+
+</table>

@@ -1,0 +1,27 @@
+
+
+<table class = "table">
+  <thead >
+    <tr>
+      <th>Дата</th>
+      <th>Товар</th>
+      <th>З міста</th>
+      <th>В місто</th>
+      <th>Компанія</th>
+      <th>Вартість</th>
+      <th><%= link_to "Додати запис", new_delivery_path, :class =>'btn btn-success btn-sm'%></th>
+    </tr>
+  </thead>
+<% Delivery.all.each do |delivery| %>
+  <tr>
+    <td><%= delivery.date %></td>
+    <td><%= delivery.name %></td>
+    <td><%= delivery.city.name %></td>
+    <td><%= City.find(delivery.city_id + 2).name %></td>
+    <td><%= delivery.company.name %> </td>
+    <td><%= delivery.price %> $</td>
+    <td width = "150px"><%= link_to "Видалити", delivery_path(delivery.id), method: :delete, data:{confirm: "Видалити запис?"}, :class =>'btn btn-danger btn-sm'%></td>
+  </tr>
+<% end %>
+
+</table>

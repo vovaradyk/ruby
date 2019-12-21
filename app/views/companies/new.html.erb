@@ -1,0 +1,42 @@
+
+
+<% if @company.errors.any? %>
+  <% @company.errors.messages.each do |msg| %>
+    <div class="allert alert-danger"><%= msg.last.last.html_safe %></div>
+  <% end %>
+<% end %>
+<br>
+
+<%= form_for :company, url: companies_path do |f| %>
+
+  <p>
+    Назва<br>
+    <%= f.text_field :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Адреса<br>
+    <%= f.text_field :address, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Рiк<br>
+    <%= f.number_field :year, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Номер телефону<br>
+    <%= f.number_field :phone, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Мiсто<br>
+    <%= f.collection_select :city_id, City.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+
+  <p>
+    <%= f.submit("Додати", {:class => 'btn btn-success '}) %>
+  </p>
+<%end %>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_174742) do
+ActiveRecord::Schema.define(version: 2019_12_21_113513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,29 @@ ActiveRecord::Schema.define(version: 2019_11_13_174742) do
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.bigint "city_id"
+    t.string "address"
+    t.integer "year"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_companies_on_city_id"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.datetime "date"
+    t.string "name"
+    t.bigint "city_id"
+    t.integer "price"
+    t.bigint "company_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_deliveries_on_city_id"
+    t.index ["company_id"], name: "index_deliveries_on_company_id"
   end
 
   create_table "players", force: :cascade do |t|

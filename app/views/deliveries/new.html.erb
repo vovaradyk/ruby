@@ -1,0 +1,45 @@
+
+<% if @delivery.errors.any? %>
+  <% @delivery.errors.messages.each do |msg| %>
+    <div class="allert alert-danger"><%= msg.last.last.html_safe %></div>
+  <% end %>
+<% end %>
+<br>
+
+<%= form_for :delivery, url: deliveries_path do |f| %>
+
+  <p>
+    Товар<br>
+    <%= f.text_field :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Дата<br>
+    <%= f.datetime_select :date, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Вартість<br>
+    <%= f.number_field :price, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Мiсто з<br>
+    <%= f.collection_select :city_id, City.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Мiсто в<br>
+    <%= f.collection_select :city_id, City.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Компанія<br>
+    <%= f.collection_select :company_id, Company.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    <%= f.submit("Додати", {:class => 'btn btn-success '}) %>
+  </p>
+<%end %>
+

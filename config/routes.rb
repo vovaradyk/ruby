@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  root 'teams#index'
+  root 'deliveries#index'
 
-  root 'teams#index', as: @home
+  root 'deliveries#index', as: @home
 
   resources :teams
+  resources :companies
+  resources :deliveries
   resources :cities
   resources :sponsors
   resources :players

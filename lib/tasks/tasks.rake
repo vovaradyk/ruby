@@ -15,42 +15,32 @@ require 'faker'
 namespace :tasks do
   desc "description"
   task filltables: :environment do
-    Team.delete_all
-    City.delete_all
-    City.populate(5) do |city|
+
+    City.populate(25) do |city|
       @address = Faker::Address;
       city.name = @address.city
       city.state = @address.state
       city.country = @address.country
       city.timezone = @address.time_zone
       city.postcode = @address.postcode
-      Team.populate(2) do |team|
-        team.name = Faker::Team.name
-        team.city_id = Faker::Number.between(1, 5)
-        team.color = Faker::Color.color_name;
-        team.year = Faker::Number.between(1950, 2019)
-        team.budget = rand(1.0...10.0).round(2)
-        team.sponsor_id = Faker::Number.between(1, 10)
-      end
     end
 
-    Sponsor.delete_all
-    Sponsor.populate(10) do |sponsor|
-      sponsor.name = Faker::Beer.name
-      sponsor.address = Faker::Address.street_address
-      sponsor.payment = Faker::Number.between(10000, 20000)
-      sponsor.phone = Faker::PhoneNumber.cell_phone_with_country_code
+    Company.populate(20) do |company|
+      company.name = Faker::Company.name
+      company.city_id = Faker::Number.between(1, 20)
+      company.address = Faker::Address.street_address
+      company.phone = Faker::PhoneNumber.cell_phone_with_country_code
+      company.year = Faker::Number.between(1950, 2019)
     end
 
-    Player.delete_all
-    Player.populate(30) do |player|
-      player.name = Faker::Name.name
-      player.team_id = Faker::Number.between(1, 10)
-      player.position = Faker::Sports::Basketball.position
-      player.nation = Faker::Nation.nationality
-      player.birthday = Faker::Date.birthday
-      player.height = rand(5.9...7.3).round(1)
-      player.weight = Faker::Number.between(170, 250)
+
+    Delivery.populate(20) do |delivery|
+      delivery.name = Faker::House.furniture
+      delivery.city_id = Faker::Number.between(1, 20)
+      delivery.company_id = Faker::Number.between(1, 20)
+      delivery.date = Faker::Time.between(DateTime.now - 150, DateTime.now)
+      delivery.price =  Faker::Number.between(100, 10000)
     end
-  end
+
+end
 end

@@ -12,12 +12,10 @@
 
   <body>
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-bold">База даних</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-      <span class="p-2 text-dark"><%= link_to "Команди", teams_path %></span>
-      <span class="p-2 text-dark"><%= link_to "Гравцi", players_path %></span>
+    <nav class="my-0 mr-md-auto ">
+      <span class="p-2 text-dark"><%= link_to "Компанії", companies_path %></span>
+      <span class="p-2 text-dark"><%= link_to "Доставки", deliveries_path %></span>
       <span class="p-2 text-dark"><%= link_to "Мiста", cities_path %></span>
-      <span class="p-2 text-dark"><%= link_to "Спонсори", sponsors_path %></span>
     </nav>
     <% if signed_in? %>
       <span class="p-2 text-dark">Ви увійшли як: <%= current_user.email %></span>
