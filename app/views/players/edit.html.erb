@@ -1,0 +1,53 @@
+<h2>Редагувати запис</h2>
+<br>
+
+<% if @player.errors.any? %>
+  <% @player.errors.messages.each do |msg| %>
+    <div class="allert alert-danger"><%= msg.last.last.html_safe %></div>
+  <% end %>
+<% end %>
+<br>
+
+<%= form_for :player, url: player_path(@player), method: :patch do |f| %>
+
+  <p>
+    Iм'я<br>
+    <%= f.text_field :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Позицiя<br>
+    <%= f.text_field :position, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Нацiональнiсть<br>
+    <%= f.text_field :nation, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    3piст<br>
+    <%= f.number_field :height, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Вага<br>
+    <%= f.number_field :weight, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Дата народження<br>
+    <%= f.date_field :birthday, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Команда<br>
+    <%= f.collection_select :team_id, Team.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+
+  <p>
+    <%= f.submit("Зберегти",{:class => 'btn btn-success '}) %>
+  </p>
+<%end %>
+

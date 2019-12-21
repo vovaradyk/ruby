@@ -1,0 +1,26 @@
+<h1>Мiста</h1>
+<br>
+
+<table class = "table table-striped">
+  <thead class="thead-dark">
+  <th>Назва</th>
+  <th>Штат</th>
+  <th>Країна</th>
+  <th>Часовий пояс</th>
+  <th>Поштовий iндекс</th>
+  <th><%= link_to "Додати запис", new_city_path, :class =>'btn btn-success btn-sm'%></th>
+  </thead>
+<% City.all.each do |city| %>
+  <tr>
+    <td><%= city.name %></td>
+    <td><%= city.state %></td>
+    <td><%= city.country %></td>
+    <td><%= city.timezone %></td>
+    <td><%= city.postcode %></td>
+    <td width = "200px"><%= link_to "Редагувати", edit_city_path(city.id), :class =>'btn btn-warning btn-sm'%>
+      <%= link_to "Видалити", city_path(city.id), method: :delete, data:{confirm: "Видалити запис?"}, :class =>'btn btn-danger btn-sm'%></td>
+
+  </tr>
+<% end %>
+
+</table>

@@ -1,0 +1,31 @@
+<h1>Гравцi</h1>
+<br>
+
+<table class = "table table-striped">
+  <thead class="thead-dark">
+  <tr>
+  <th>Iм'я</th>
+  <th>Команда</th>
+  <th>Позицiя</th>
+  <th>Нацiональнiсть</th>
+  <th>3piст</th>
+  <th>Вага</th>
+  <th>Дата народження</th>
+    <th><%= link_to "Додати запис", new_player_path, :class =>'btn btn-success btn-sm'%></th>
+  </tr>
+  </thead>
+<% Player.all.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.team.name %></td>
+    <td><%= player.position %></td>
+    <td><%= player.nation %></td>
+    <td><%= player.height %> ft</td>
+    <td><%= player.weight %> lb</td>
+    <td><%= player.birthday.strftime("%m/%d/%Y") %></td>
+    <td width = "200px"><%= link_to "Редагувати", edit_player_path(player.id), :class =>'btn btn-warning btn-sm'%>
+      <%= link_to "Видалити", player_path(player.id), method: :delete, data:{confirm: "Видалити запис?"}, :class =>'btn btn-danger btn-sm'%></td>
+  </tr>
+<% end %>
+
+</table>

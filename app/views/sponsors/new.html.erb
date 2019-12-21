@@ -1,0 +1,37 @@
+<h2>Додати запис</h2>
+<br>
+
+<% if @sponsor.errors.any? %>
+  <% @sponsor.errors.messages.each do |msg| %>
+    <div class="allert alert-danger"><%= msg.last.last.html_safe %></div>
+  <% end %>
+<% end %>
+<br>
+
+<%= form_for :sponsor, url: sponsors_path do |f| %>
+
+  <p >
+    Назва<br>
+    <%= f.text_field :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Адреса<br>
+    <%= f.text_field :address, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Платіж за гру<br>
+    <%= f.number_field :payment, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Номер телефону<br>
+    <%= f.text_field :phone, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    <%= f.submit("Зберегти",{:class => 'btn btn-success '}) %>
+  </p>
+<%end %>
+

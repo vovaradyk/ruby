@@ -1,0 +1,17 @@
+<div id="clearance" class="sign-up">
+  <h2>Реєстрація</h2>
+
+  <%= form_for @user do |form| %>
+    <%= render partial: '/users/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit("Зареєструватися", {:class => 'btn btn-success '}) %>
+    </div>
+
+    <div class="other-links">
+      Вже зареєстровані?
+      <%= link_to "Увійти", sign_in_path %>
+    </div>
+  <% end %>
+</div>
+

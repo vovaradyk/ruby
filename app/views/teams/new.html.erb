@@ -1,0 +1,47 @@
+<h2>Додати команду</h2>
+<br>
+
+<% if @team.errors.any? %>
+  <% @team.errors.messages.each do |msg| %>
+    <div class="allert alert-danger"><%= msg.last.last.html_safe %></div>
+  <% end %>
+<% end %>
+<br>
+
+<%= form_for :team, url: teams_path do |f| %>
+
+  <p>
+    Назва<br>
+    <%= f.text_field :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Кольори<br>
+    <%= f.text_field :color, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Рiк<br>
+    <%= f.number_field :year, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Бюджет<br>
+    <%= f.number_field :budget, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Мiсто<br>
+    <%= f.collection_select :city_id, City.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    Спонсор<br>
+    <%= f.collection_select :sponsor_id, Sponsor.order(:name), :id, :name, {:class => 'form-control'} %>
+  </p>
+
+  <p>
+    <%= f.submit("Додати", {:class => 'btn btn-success '}) %>
+  </p>
+<%end %>
+

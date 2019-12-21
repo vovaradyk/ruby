@@ -1,0 +1,23 @@
+<h1>Спонсори</h1>
+<br>
+
+<table class = "table table-striped">
+  <thead class="thead-dark">
+  <th>Назва</th>
+  <th>Адреса</th>
+  <th>Платіж за гру</th>
+  <th>Номер телефону</th>
+  <th><%= link_to "Додати запис", new_sponsor_path, :class =>'btn btn-success btn-sm'%></th>
+  </thead>
+<% Sponsor.all.each do |sponsor| %>
+  <tr>
+    <td><%= sponsor.name %></td>
+    <td><%= sponsor.address %></td>
+    <td><%= sponsor.payment %> $</td>
+    <td><%= sponsor.phone %></td>
+    <td width = "200px"><%= link_to "Редагувати", edit_sponsor_path(sponsor.id), :class =>'btn btn-warning btn-sm'%>
+      <%= link_to "Видалити", sponsor_path(sponsor.id), method: :delete, data:{confirm: "Видалити команду?"}, :class =>'btn btn-danger btn-sm'%></td>
+  </tr>
+<% end %>
+
+</table>
