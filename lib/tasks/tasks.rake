@@ -33,6 +33,7 @@ namespace :tasks do
       company.year = Faker::Number.between(1950, 2019)
     end
 
+    Delivery.delete_all
 
     Delivery.populate(20) do |delivery|
       delivery.name = Faker::House.furniture
